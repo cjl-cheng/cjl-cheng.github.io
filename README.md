@@ -16,6 +16,7 @@ Then open <http://localhost:8000/>.
 
 - Edit biographical, research, publication, and experience content in `index.html`.
 - Edit layout, color, typography, and responsive behavior in `styles.css`.
+- The profile photo is `assets/Jialin_Cheng_Portrait.jpg`; preserve its original aspect ratio on desktop and mobile.
 - `script.js` only updates the footer year. All navigation and content work without JavaScript.
 - Add a public CV under `files/` only after its facts and privacy boundary have been reviewed, then update the CV link in `index.html`.
 - Add paper, code, Scholar, or ORCID links only after confirming that public disclosure is appropriate and the exact URL is verified.

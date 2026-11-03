@@ -1,0 +1,133 @@
+name: Retain latest successful Pages deployment
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  deployments: write
+
+concurrency:
+  group: pages-deployment-record-maintenance
+  cancel-in-progress: true
+
+jobs:
+  retain-latest:
+    if: github.repository == 'cjl-cheng/cjl-cheng.github.io'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Verify published files and remove older deployment records
+        shell: python {0}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TARGET_SHA: ${{ github.sha }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          import base64
+          import hashlib
+          import json
+          import os
+          import time
+          import urllib.request
+
+          repository = os.environ['REPOSITORY']
+          target_sha = os.environ['TARGET_SHA']
+          api_root = f'https://api.github.com/repos/{repository}'
+          site = 'https://cjl-cheng.github.io/'
+
+          def api(path, method='GET', data=None):
+              body = None if data is None else json.dumps(data).encode()
+              request = urllib.request.Request(
+                  api_root + path, data=body, method=method,
+                  headers={
+                      'Authorization': 'Bearer ' + os.environ['GH_TOKEN'],
+                      'Accept': 'application/vnd.github+json',
+                      'X-GitHub-Api-Version': '2022-11-28',
+                      'User-Agent': 'pages-deployment-record-maintenance',
+                      'Content-Type': 'application/json',
+                  },
+              )
+              with urllib.request.urlopen(request, timeout=20) as response:
+                  payload = response.read()
+                  return json.loads(payload) if payload else None
+
+          def file_at_commit(path):
+              record = api(f'/contents/{path}?ref={target_sha}')
+              return base64.b64decode(record['content'])
+
+          expected = {
+              'index.html': hashlib.sha256(file_at_commit('index.html')).hexdigest(),
+              'assets/Jialin_Cheng_Portrait.jpg': hashlib.sha256(
+                  file_at_commit('assets/Jialin_Cheng_Portrait.jpg')
+              ).hexdigest(),
+          }
+
+          def published_files_match():
+              for path, digest in expected.items():
+                  request = urllib.request.Request(
+                      site + path + '?revision=' + target_sha,
+                      headers={'User-Agent': 'pages-deployment-record-maintenance'},
+                  )
+                  with urllib.request.urlopen(request, timeout=20) as response:
+                      if response.status != 200:
+                          return False
+                      if hashlib.sha256(response.read()).hexdigest() != digest:
+                          return False
+              return True
+
+          def successful(deployment):
+              statuses = api(f"/deployments/{deployment['id']}/statuses")
+              return bool(statuses) and statuses[0]['state'] == 'success'
+
+          keep = None
+          for attempt in range(60):
+              if api('/git/ref/heads/main')['object']['sha'] != target_sha:
+                  print('Superseded by a newer main commit; no records deleted.')
+                  raise SystemExit(0)
+              deployments = api(
+                  f'/deployments?environment=github-pages&sha={target_sha}&per_page=100'
+              )
+              if deployments:
+                  candidate = max(deployments, key=lambda row: row['id'])
+                  try:
+                      if successful(candidate) and published_files_match():
+                          keep = candidate
+                          break
+                  except OSError as error:
+                      print('Waiting for published files:', type(error).__name__)
+              time.sleep(10)
+          if keep is None:
+              raise RuntimeError('Exact-commit deployment/live-file verification timed out; nothing deleted.')
+
+          all_deployments = []
+          page = 1
+          while True:
+              rows = api(f'/deployments?environment=github-pages&per_page=100&page={page}')
+              all_deployments.extend(rows)
+              if len(rows) < 100:
+                  break
+              page += 1
+          if api('/git/ref/heads/main')['object']['sha'] != target_sha or not successful(keep):
+              raise RuntimeError('Deployment changed before cleanup; nothing deleted.')
+          if any(row['id'] > keep['id'] for row in all_deployments):
+              raise RuntimeError('Newer deployment appeared; nothing deleted.')
+
+          deleted = []
+          for deployment in all_deployments:
+              if deployment['id'] == keep['id']:
+                  continue
+              if api('/git/ref/heads/main')['object']['sha'] != target_sha:
+                  raise RuntimeError('Main changed during cleanup; leaving remaining records intact.')
+              deployment_id = deployment['id']
+              api(f'/deployments/{deployment_id}/statuses', 'POST', {
+                  'state': 'inactive', 'auto_inactive': False,
+              })
+              api(f'/deployments/{deployment_id}', 'DELETE')
+              deleted.append(deployment_id)
+          remaining = api('/deployments?environment=github-pages&per_page=100')
+          if [row['id'] for row in remaining] != [keep['id']]:
+              raise RuntimeError('Unexpected deployment records remain; inspect before retrying.')
+          print(json.dumps({'retained': keep['id'], 'sha': target_sha, 'deleted': deleted}))

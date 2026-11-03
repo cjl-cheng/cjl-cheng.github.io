@@ -127,6 +127,14 @@ p {
   padding-right: 1.5rem;
 }
 
+.profile-portrait {
+  display: block;
+  width: 6rem;
+  height: auto;
+  margin-bottom: 1.25rem;
+  border-radius: 0.2rem;
+}
+
 .profile h1 {
   margin-bottom: 1rem;
   color: var(--accent);
@@ -363,6 +371,26 @@ main > section + section {
 
   .profile {
     position: static;
+  }
+
+  .identity {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 4.5rem;
+    align-items: start;
+    gap: 1rem;
+  }
+
+  .identity-details {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+  }
+
+  .profile-portrait {
+    grid-column: 2;
+    grid-row: 1;
+    width: 4.5rem;
+    margin: 0;
   }
 
   .profile h1 {
