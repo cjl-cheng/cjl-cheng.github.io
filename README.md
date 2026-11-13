@@ -19,6 +19,7 @@ Then open <http://localhost:8000/>.
 - The profile photo is `assets/Jialin_Cheng_Portrait.jpg`; preserve its original aspect ratio on desktop and mobile.
 - `script.js` only updates the footer year. All navigation and content work without JavaScript.
 - `files/Jialin_Cheng_CV.pdf` is the applicant-authorized public two-page CV. Replace it with the reviewed current two-page PDF when updating the CV; keep both download links working. Do not restore the former email-request link.
+- Standing instruction (13 November 2026): every CV revision must also synchronize this public PDF from `/home/silver/projects/PhD_Application_2026/01_CV/CV_PhD_2pages.pdf`. After publication, verify the live download matches that canonical file by SHA-256 and confirm the latest-successful-deployment cleanup completes. No separate publishing confirmation is needed for these CV updates. If the PDF is unchanged, verify the existing live copy without creating a redundant deployment. Never copy the private application workspace or evidence files here.
 - Add paper, code, Scholar, or ORCID links only after confirming that public disclosure is appropriate and the exact URL is verified.
 
 ## Public-disclosure policy
