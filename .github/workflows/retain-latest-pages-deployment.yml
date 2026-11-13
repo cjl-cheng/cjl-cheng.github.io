@@ -60,6 +60,10 @@ jobs:
 
           expected = {
               'index.html': hashlib.sha256(file_at_commit('index.html')).hexdigest(),
+              'styles.css': hashlib.sha256(file_at_commit('styles.css')).hexdigest(),
+              'files/Jialin_Cheng_CV.pdf': hashlib.sha256(
+                  file_at_commit('files/Jialin_Cheng_CV.pdf')
+              ).hexdigest(),
               'assets/Jialin_Cheng_Portrait.jpg': hashlib.sha256(
                   file_at_commit('assets/Jialin_Cheng_Portrait.jpg')
               ).hexdigest(),

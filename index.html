@@ -12,12 +12,12 @@
   <meta property="og:locale" content="en_US">
   <meta property="og:url" content="https://cjl-cheng.github.io/">
   <meta property="og:title" content="Jialin Cheng | AI Interpretability and Trustworthy AI">
-  <meta property="og:description" content="Research interests in AI interpretability and trustworthy AI, with questions about language-model behavior, errors, and useful explanations.">
+  <meta property="og:description" content="Research experience in language-model interpretability, positional information and interpretable error detection. Academic profile and two-page CV.">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Jialin Cheng | AI Interpretability and Trustworthy AI">
-  <meta name="twitter:description" content="Research interests in AI interpretability and trustworthy AI, with questions about language-model behavior, errors, and useful explanations.">
+  <meta name="twitter:description" content="Research experience in language-model interpretability, positional information and interpretable error detection. Academic profile and two-page CV.">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css?v=20261103">
+  <link rel="stylesheet" href="styles.css?v=20261113">
   <script src="script.js?v=20261018" defer></script>
 </head>
 <body>
@@ -36,14 +36,14 @@
       </div>
       <div class="profile-links" aria-label="Contact and profile links">
         <a href="mailto:cjl_cheng@buaa.edu.cn">Email</a>
-        <a href="#cv">CV</a>
+        <a class="cv-link" href="files/Jialin_Cheng_CV.pdf" download>CV <span>(PDF, 2 pages)</span></a>
         <a href="https://github.com/cjl-cheng" target="_blank" rel="noopener noreferrer">GitHub<span class="sr-only"> (opens in a new tab)</span></a>
       </div>
       <nav aria-label="Page sections">
         <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#experience">Background</a>
-        <a href="#publications">Publications</a>
+        <a href="#research">Research experience</a>
+        <a href="#engineering">Engineering</a>
+        <a href="#experience">Education</a>
         <a href="#contact">Contact</a>
       </nav>
     </header>
@@ -52,55 +52,87 @@
       <section class="intro" id="about" aria-labelledby="about-title">
         <h2 id="about-title">AI interpretability<br>and trustworthy AI.</h2>
         <p class="intro-lead">I want to understand how language models use information, why they make mistakes, and how explanations can help people assess and improve their behavior.</p>
-        <p>I am an M.Eng. student in Safety Science and Engineering at Beihang University’s School of Reliability and Systems Engineering. My current focus is on language-model behavior and errors.</p>
+        <p>I am an M.Eng. student in Safety Science and Engineering at Beihang University’s School of Reliability and Systems Engineering, expecting to graduate in June 2027. My work brings together model analysis, controlled interventions and interpretable failure detection.</p>
       </section>
 
       <section id="research" aria-labelledby="research-title">
-        <h2 id="research-title">Research interests</h2>
-        <div class="research-questions">
-          <article>
-            <h3>How do models use information?</h3>
-            <p>I study how model components and internal computations relate to behavior, using controlled experiments and interventions to test explanations.</p>
+        <h2 id="research-title">Research experience</h2>
+        <p class="section-intro">My work approaches language-model behavior from two sides: understanding the computations behind it and making evidence of failure easier to inspect.</p>
+        <div class="research-projects">
+          <article class="research-project" id="masters-research" aria-labelledby="masters-title">
+            <div class="project-heading">
+              <h3 id="masters-title">Context use and failures in language models</h3>
+              <p class="project-date">Ongoing</p>
+            </div>
+            <p class="project-context">Master’s thesis, Beihang University</p>
+            <p>My master’s research focuses on <strong>contextual hallucination and evidence use</strong> in long-context language models. I aim to connect the conditions in which models overlook or misuse evidence with the internal computations behind those failures.</p>
+            <p>I am investigating these questions through controlled input comparisons and model interventions. The broader thesis goal is to develop <strong>interpretable warning signals</strong> grounded in that understanding and evaluate targeted ways to reduce errors.</p>
           </article>
-          <article>
-            <h3>Why do models make mistakes?</h3>
-            <p>I explore interpretable failure detection: identifying model errors through evidence that can be inspected and checked.</p>
+          <article class="research-project" id="positional-information" aria-labelledby="position-title">
+            <div class="project-heading">
+              <h3 id="position-title">Positional information in language models</h3>
+              <p class="project-date">2025 – 2026</p>
+            </div>
+            <p class="project-context">Graduate research project, Beihang University</p>
+            <p>How does positional information shape a model’s behavior? I studied this through a lightweight method for adapting how a model uses positional information, alongside controlled tests of its behavior.</p>
+            <ul class="contribution-list">
+              <li><strong>Proposed and implemented</strong> the adaptation method and analyzed mathematical properties of the modified attention computation.</li>
+              <li><strong>Designed controlled interventions</strong> to test whether learned adaptation parameters can guide changes in model behavior.</li>
+            </ul>
+            <p class="project-period">January 2025 – May 2026; follow-up work in August – September 2026.</p>
           </article>
-          <article>
-            <h3>What makes an explanation useful?</h3>
-            <p>I am interested in explanations that are faithful to model behavior and help people assess it. Formal methods offer ways to make claims precise and checkable.</p>
+          <article class="research-project" id="error-detection" aria-labelledby="detection-title">
+            <div class="project-heading">
+              <h3 id="detection-title">Interpretable error detection</h3>
+              <p class="project-date">2026</p>
+            </div>
+            <p class="project-context">Research collaboration following my Verimag placement</p>
+            <p>How can an error detector make the reasons for its alarms inspectable? I worked on detectors for errors in <strong>completed mathematical responses</strong>, using the way token-level confidence changes over a response.</p>
+            <ul class="contribution-list">
+              <li><strong>Led method design, implementation and evaluation</strong> of the interpretable detectors.</li>
+              <li><strong>Developed temporal rules</strong> with explicit alarm conditions that can be checked against each response’s confidence signals.</li>
+            </ul>
+            <p class="project-period">June 6 – August 1, 2026.</p>
           </article>
         </div>
       </section>
 
+      <section id="engineering" aria-labelledby="engineering-title">
+        <h2 id="engineering-title">Engineering experience</h2>
+        <article aria-labelledby="gui-title">
+          <div class="project-heading">
+            <h3 id="gui-title">AI testing platform for complex software</h3>
+            <p class="project-date">2023 – present</p>
+          </div>
+          <p class="project-context">Student Researcher, Beihang University</p>
+          <p>I led the architecture, core-algorithm development and testing of an intelligent GUI-testing terminal. My work combined <strong>OCR, object detection and multimodal language models</strong> to recognize interface elements and connect text, icons and functions.</p>
+          <p class="project-followup">I also integrated locally deployed language models into test planning, script generation, interface operations and result evaluation.</p>
+        </article>
+      </section>
+
       <section id="experience" aria-labelledby="experience-title">
-        <h2 id="experience-title">Academic background</h2>
-        <h3 class="group-title">Research &amp; exchange</h3>
+        <h2 id="experience-title">Education &amp; research placement</h2>
         <div class="record-list">
           <article class="record">
             <p class="record-date">Feb – Jun 2026</p>
             <div>
-              <h4>Student Researcher (TER)</h4>
+              <h3>Student Researcher (TER)</h3>
               <p class="record-place">Verimag / Université Grenoble Alpes</p>
-              <p>Student research placement in AI interpretability and trustworthy AI.</p>
+              <p>Student research placement supervised by Alexandre Donzé.</p>
             </div>
           </article>
           <article class="record">
-            <p class="record-date">Non-degree exchange</p>
+            <p class="record-date">Jan – Jul 2026</p>
             <div>
-              <h4>Université Grenoble Alpes</h4>
+              <h3>Université Grenoble Alpes</h3>
               <p class="record-place">UFR IM²AG · M1 MoSIG / Informatique</p>
-              <p>Exchange studies undertaken during my Beihang master’s program.</p>
+              <p>Non-degree exchange during my Beihang master’s program.</p>
             </div>
           </article>
-        </div>
-
-        <h3 class="group-title education-title">Education</h3>
-        <div class="record-list">
           <article class="record">
             <p class="record-date">2024 – 2027<span>Expected graduation</span></p>
             <div>
-              <h4>M.Eng., Safety Science and Engineering</h4>
+              <h3>M.Eng., Safety Science and Engineering</h3>
               <p class="record-place">Beihang University</p>
               <p>School of Reliability and Systems Engineering</p>
             </div>
@@ -108,7 +140,7 @@
           <article class="record">
             <p class="record-date">2020 – 2024</p>
             <div>
-              <h4>B.Eng., Safety Engineering</h4>
+              <h3>B.Eng., Safety Engineering</h3>
               <p class="record-place">Beihang University</p>
               <p>School of Reliability and Systems Engineering</p>
             </div>
@@ -116,7 +148,7 @@
           <article class="record">
             <p class="record-date">2020 – 2024</p>
             <div>
-              <h4>B.Sc., Mathematics and Applied Mathematics</h4>
+              <h3>B.Sc., Mathematics and Applied Mathematics</h3>
               <p class="record-place">Beihang University · Minor degree</p>
               <p>School of Mathematical Sciences</p>
             </div>
@@ -124,16 +156,11 @@
         </div>
       </section>
 
-      <section id="publications" aria-labelledby="publications-title">
-        <h2 id="publications-title">Publications</h2>
-        <p>Publications and accompanying resources will be listed here when public versions are available.</p>
-      </section>
-
       <section class="contact-section" id="contact" aria-labelledby="contact-title">
         <h2 id="contact-title">Contact &amp; CV</h2>
         <p>I welcome conversations about AI interpretability and trustworthy AI.</p>
         <a class="contact-email" href="mailto:cjl_cheng@buaa.edu.cn">cjl_cheng@buaa.edu.cn</a>
-        <p class="cv-note" id="cv">For my current research CV, <a href="mailto:cjl_cheng@buaa.edu.cn?subject=Request%20for%20current%20CV">request a copy by email</a>.</p>
+        <p class="cv-note" id="cv"><a href="files/Jialin_Cheng_CV.pdf" download>Download my CV (PDF, 2 pages)</a></p>
       </section>
 
       <footer class="site-footer">
