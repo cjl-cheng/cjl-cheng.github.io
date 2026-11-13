@@ -29,6 +29,8 @@ Keep unpublished manuscript titles, acronyms, submission/review history, distinc
 
 ## Design and accessibility
 
+Use concise visitor-facing link labels: both CV links should read simply `CV`. Keep file format, page count and editing/validation notes out of the link text.
+
 The homepage uses a compact academic profile: an identity/navigation rail on desktop and a single reading column on mobile. Research experience follows the introduction, with the question, contribution and scope of each project. Keep research questions distinct from demonstrated outcomes, use clear headings and readable line lengths, and retain the dates and scope of verified background records. The mathematics B.Sc. is a minor degree; UGA exchange studies are non-degree (January–July 2026).
 
 Use native anchor navigation, a visible keyboard-focus state and skip link. Check narrow screens, keyboard use, direct section links, reduced motion, no-JavaScript rendering and printing when changing the layout. Keep the page free of runtime dependencies, analytics and remote font requests. Font stacks prefer locally available Lato (also used in the application CV) for body text and a restrained serif for the name, with system fallbacks.

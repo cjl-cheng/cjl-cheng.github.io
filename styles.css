@@ -170,17 +170,6 @@ p {
   min-height: 2.75rem;
 }
 
-.profile-links .cv-link {
-  flex-basis: 100%;
-  gap: 0.4rem;
-  font-weight: 700;
-}
-
-.cv-link span {
-  font-size: 0.85rem;
-  font-weight: 400;
-}
-
 nav {
   display: flex;
   flex-direction: column;
@@ -473,10 +462,6 @@ strong {
 
   .profile-links {
     margin-top: 0.35rem;
-  }
-
-  .profile-links .cv-link {
-    flex-basis: auto;
   }
 
   nav {
