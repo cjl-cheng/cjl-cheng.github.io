@@ -64,9 +64,13 @@
               <h3 id="masters-title">Context use and failures in language models</h3>
             </div>
             <p class="project-context">Master’s thesis, Beihang University</p>
-            <p>My thesis investigates why language models <strong>overlook or misuse evidence</strong> in long contexts. I start by identifying the conditions that trigger these failures, then study how the model selects evidence, where errors arise, and how they propagate through its computations.</p>
-            <p>That analysis guides two further questions. Can internal signals give an <strong>interpretable early warning</strong> before an error appears in the answer? Can a targeted change to the input or to the model’s computation reduce the same type of failure?</p>
-            <p>I have designed and run controlled tests of evidence use and measured how internal interventions change the model’s support for candidate answers. In related work, I built and evaluated a rule-based detector that traces warnings on completed answers back to the conditions that triggered them.</p>
+            <p>My thesis studies why language models overlook or misuse evidence in long contexts, from the conditions that trigger errors to the internal computations that produce them.</p>
+            <ul class="contribution-list">
+              <li><strong>Designed and ran controlled tests</strong> to study how changes in context affect the model’s ability to use the same evidence.</li>
+              <li><strong>Tested internal mechanisms</strong> with matched interventions and measured changes in the model’s support for candidate answers.</li>
+              <li><strong>Built and evaluated a rule-based detector</strong> in related work, tracing warnings on completed answers back to the conditions that triggered them.</li>
+            </ul>
+            <p>This work provides a basis for testing whether internal signals can support interpretable early warnings and whether targeted interventions can reduce these errors.</p>
           </article>
           <article class="research-project" id="positional-information" aria-labelledby="position-title">
             <div class="project-heading">
