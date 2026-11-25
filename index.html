@@ -65,8 +65,8 @@
               <p class="project-date">Ongoing</p>
             </div>
             <p class="project-context">Master’s thesis, Beihang University</p>
-            <p>My master’s research focuses on <strong>contextual hallucination and evidence use</strong> in long-context language models. I aim to connect the conditions in which models overlook or misuse evidence with the internal computations behind those failures.</p>
-            <p>I am investigating these questions through controlled input comparisons and model interventions. The broader thesis goal is to develop <strong>interpretable warning signals</strong> grounded in that understanding and evaluate targeted ways to reduce errors.</p>
+            <p>My thesis asks when language models <strong>overlook or misuse evidence</strong> in long inputs. In one ongoing study, I change where the same evidence appears and swap internal model states between matched inputs to measure how the model’s support for candidate answers changes.</p>
+            <p>The broader goal is to understand the mechanisms behind these failures and use that understanding to develop <strong>interpretable warnings</strong> and test ways to reduce errors.</p>
           </article>
           <article class="research-project" id="positional-information" aria-labelledby="position-title">
             <div class="project-heading">
@@ -74,10 +74,10 @@
               <p class="project-date">2025 – 2026</p>
             </div>
             <p class="project-context">Graduate research project, Beihang University</p>
-            <p>How does positional information shape a model’s behavior? I studied this through a lightweight method for adapting how a model uses positional information, alongside controlled tests of its behavior.</p>
+            <p>I studied how attention uses position when a model has to answer questions from text that contains distracting information.</p>
             <ul class="contribution-list">
-              <li><strong>Proposed and implemented</strong> the adaptation method and analyzed mathematical properties of the modified attention computation.</li>
-              <li><strong>Designed controlled interventions</strong> to test whether learned adaptation parameters can guide changes in model behavior.</li>
+              <li><strong>Proposed and implemented</strong> a way to adapt how individual attention heads use position and analyzed the mathematics of the modified computation.</li>
+              <li><strong>Designed controlled interventions</strong> in the original model and compared ways of choosing where to intervene to test how much the learned parameters could help.</li>
             </ul>
             <p class="project-period">January 2025 – May 2026; follow-up work in August – September 2026.</p>
           </article>
@@ -87,10 +87,10 @@
               <p class="project-date">2026</p>
             </div>
             <p class="project-context">Research collaboration following my Verimag placement</p>
-            <p>How can an error detector make the reasons for its alarms inspectable? I worked on detectors for errors in <strong>completed mathematical responses</strong>, using the way token-level confidence changes over a response.</p>
+            <p>When a detector flags a model’s answer, can we check what prompted the warning? I studied this using <strong>completed answers to mathematical problems</strong>.</p>
             <ul class="contribution-list">
-              <li><strong>Led method design, implementation and evaluation</strong> of the interpretable detectors.</li>
-              <li><strong>Developed temporal rules</strong> with explicit alarm conditions that can be checked against each response’s confidence signals.</li>
+              <li><strong>Designed and implemented rules</strong> that look for patterns in how the model’s confidence changes over an answer.</li>
+              <li><strong>Compared detectors on held-out problem groups</strong> and used the recorded scores and rule conditions to check what triggered individual warnings.</li>
             </ul>
             <p class="project-period">June 6 – August 1, 2026.</p>
           </article>
